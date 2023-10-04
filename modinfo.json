@@ -1,0 +1,44 @@
+{
+  "HarmonyId": "JAN.movablewills",
+  "DisplayName": "Movable Wills",
+  "Authors": [
+    "JAN"
+  ],
+  "Description": "Drag the top part of your will/notes/death note to move them!.",
+  "Version": "1.0.0",
+  "RequiredMods": [],
+  "Settings": {
+    "CheckboxSettings": [
+      {
+        "Name": "Auto-save will",
+        "Description": "Will save your will whenever you deselect the text of your will.",
+        "DefaultValue": true,
+        "AvailableInGame": true
+      },
+      {
+        "Name": "Use old controls",
+        "Description": "Instead of clicking on the top of the objects to move them, right click in any part of them to do it. If you are having problems moving your things, use this setting.",
+        "DefaultValue": false,
+        "AvailableInGame": true
+      },
+      {
+        "Name": "Use rough estimates",
+        "Description": "If you are having problems with the limits for moving your things, use this setting. This will only work with the \"Use old controls\" setting.",
+        "DefaultValue": false,
+        "AvailableInGame": true
+      }
+  ],
+  "DropdownSettings": [
+    {
+      "Name": "Middle-click Functionality",
+      "Description": "Adds a special ability to your middle click\nCentralize: will set every movable object to the default position\nGo here: will instantly teleport all visible movable objects to where your mouse is.",
+      "Options": [
+        "None",
+        "Centralize",
+        "Go here"
+      ],
+      "AvailableInGame": false
+    }
+  ]
+  }
+}
