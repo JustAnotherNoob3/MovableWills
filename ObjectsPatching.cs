@@ -6,6 +6,7 @@ using HarmonyLib;
 using Utils;
 using Game.Interface;
 using Services;
+using BMG.UI;
 
 namespace ObjectsPatching
 {
@@ -35,6 +36,7 @@ namespace ObjectsPatching
                 a.marginY = 0.3f;
                 a.yLength = 0.0331f;
                 a.yOffset = 0.2668f;
+                a.field = deathNote.GetComponentInChildren<BMG_InputField>();
             }
         }
 
@@ -53,6 +55,7 @@ namespace ObjectsPatching
                 a.marginY = 0.3f;
                 a.yLength = 0.033f;
                 a.yOffset = 0.267f;
+                a.field = notepad.transform.GetChild(0).GetChild(0).GetChild(1).GetComponentInChildren<BMG_InputField>();
             }
         }
 
@@ -83,6 +86,7 @@ namespace ObjectsPatching
                 a.marginY = 0.345f;
                 a.yLength = 0.04f;
                 a.yOffset = 0.315f;
+                a.field = lastWill.GetComponentInChildren<BMG_InputField>();
             }
         }
 

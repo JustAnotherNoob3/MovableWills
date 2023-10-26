@@ -18,6 +18,8 @@ namespace NoClosing
 			{
 				Service.Game.Interface.IsLastWillOpen.Toggle();
 			}
+            GameObject dnd = GameObject.Find("Hud/LastWillElementsUI(Clone)/MainPanel/LastWillCommonElements");
+            DragnDrop.lastTouched = dnd;
             return false;
         }
     }
@@ -29,6 +31,9 @@ namespace NoClosing
 			{
 				Service.Game.Interface.IsDeathNoteOpen.Toggle();
 			}
+            GameObject dnd = GameObject.Find("Hud/DeathNoteElementsUI(Clone)/MainPanel/DeathNoteCommonElements");
+            DragnDrop.lastTouched = dnd;
+            
             return false;
         }
     }
@@ -40,6 +45,8 @@ namespace NoClosing
 			{
 				Service.Game.Interface.IsNotesOpen.Toggle();
 			}
+            GameObject dnd = GameObject.Find("Hud/NotepadElementsUI(Clone)/MainPanel/NotepadCommonElements");
+            DragnDrop.lastTouched = dnd;
             return false;
         }
     }

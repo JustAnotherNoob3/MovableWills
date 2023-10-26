@@ -1,12 +1,16 @@
-using System.Transactions;
 using System;
 using SML;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using Utils;
+using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.Bindings;
+using BMG.UI;
 public class DragnDrop : MonoBehaviour
 {
+    //Movable wills stuff
     public Func<bool> isVisible = null;
     public RectTransform canvas;
     private static bool alrDragging = false;
@@ -20,8 +24,19 @@ public class DragnDrop : MonoBehaviour
     public int l;
     public bool oldControls;
     public bool estimate;
+    public string snapshot = null;
+
+    // Undo/redo stuff
+    public DropOutStack<string> undoStack = new(50);
+    public DropOutStack<string> redoStack = new(50);
+    public static GameObject lastTouched = null;
+    public BMG_InputField field;
+    private bool modifiedText = false;
     public void Start()
     {
+        undoStack.Push("");
+        field.onValueChanged.AddListener(new UnityEngine.Events.UnityAction<string>(OnChanged));
+        field.onSelect.AddListener(new UnityEngine.Events.UnityAction<string>(OnSelect));
         estimate = ModSettings.GetBool("Use rough estimates", "JAN.movablewills");
         oldControls = ModSettings.GetBool("Use old controls", "JAN.movablewills");
         string p = ModSettings.GetString("Middle-click Functionality", "JAN.movablewills");
@@ -33,6 +48,12 @@ public class DragnDrop : MonoBehaviour
 
     public void Update()
     {
+        modifiedText = false;
+        MovingBehaviour();
+        Undo();
+        Redo();
+    }
+    public void MovingBehaviour(){
         if (l == 1 && Input.GetKey(KeyCode.Mouse2))
         {
             isDragging = false;
@@ -113,7 +134,49 @@ public class DragnDrop : MonoBehaviour
                 ChatUtils.AddFeedbackMsg("<color=#FF0000>Don't take your stuff outside the screen, bumfuzzle</color=#FF0000>", feedbackMessageType: "warning");
             }
         }
+    }
 
-
+    public void Redo(){
+        if (!isVisible()) return;
+        if(redoStack.Count() == 0) return;
+        if(!(lastTouched == gameObject)) return;
+        if(!(Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Z))) return;
+        string redo = redoStack.Pop();
+        modifiedText = true;
+        undoStack.Push(field.text);
+        field.text = redo;
+        SetSelectionPosition(redo.Length);
+        
+    }
+    public void Undo(){
+        if (!isVisible()) return;
+        if(!(lastTouched == gameObject)) return;
+        if(undoStack.Count() == 0) return;
+        if(!(Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.Z)) || Input.GetKey(KeyCode.LeftShift)) return;
+        string undo = undoStack.Pop();
+        modifiedText = true;
+        redoStack.Push(field.text);
+        field.text = undo;
+        SetSelectionPosition(undo.Length);
+        
+    }
+    private void SetSelectionPosition(int pos){
+        field.selectionAnchorPosition = pos;
+        field.stringPosition = pos;
+        field.stringPositionInternal = pos;
+        field.stringSelectPositionInternal = pos;
+    }
+    public void OnChanged(string text){
+        if(snapshot != null){
+            undoStack.Push(snapshot);
+            snapshot = null;
+        }
+        if(modifiedText) return;
+        redoStack.Clear();
+        if(MiscUtils.CalcLevenshteinDistance(undoStack.Peek(), text) < 4) return;
+        snapshot = text;
+    }
+    public void OnSelect(string text){
+        lastTouched = gameObject;
     }
 }
