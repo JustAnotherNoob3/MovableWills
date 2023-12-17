@@ -8,9 +8,15 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Bindings;
 using BMG.UI;
+using Game.Interface;
+using System.IO.Compression;
 public class DragnDrop : MonoBehaviour
 {
     //Movable wills stuff
+    public bool allowSaving = false;
+    public float timeForSaving = 2;
+    public LastWillPanel a = null;
+    public bool movablewills = false;
     public Func<bool> isVisible = null;
     public RectTransform canvas;
     private static bool alrDragging = false;
@@ -25,6 +31,7 @@ public class DragnDrop : MonoBehaviour
     public bool oldControls;
     public bool estimate;
     public string snapshot = null;
+    public bool b = false;
 
     // Undo/redo stuff
     public DropOutStack<string> undoStack = new(50);
@@ -32,6 +39,7 @@ public class DragnDrop : MonoBehaviour
     public static GameObject lastTouched = null;
     public BMG_InputField field;
     private bool modifiedText = false;
+
     public void Start()
     {
         undoStack.Push("");
@@ -39,8 +47,10 @@ public class DragnDrop : MonoBehaviour
         field.onSelect.AddListener(new UnityEngine.Events.UnityAction<string>(OnSelect));
         estimate = ModSettings.GetBool("Use rough estimates", "JAN.movablewills");
         oldControls = ModSettings.GetBool("Use old controls", "JAN.movablewills");
+        b = ModSettings.GetBool("Auto-save will", "JAN.movablewills");
+        movablewills = ModSettings.GetBool("Movable Wills", "JAN.movablewills");
         string p = ModSettings.GetString("Middle-click Functionality", "JAN.movablewills");
-        l = p == "Centralize" ? 1 : ( p  == "Go here" ? 2 : 0);
+        l = p == "Centralize" ? 1 : ( p  == "Go here" ? 2 : ( p  == "Save" ? 3 : 0));
         uiRectTransform = GetComponent<RectTransform>();
         uiRectTransform.pivot = new Vector2(1, 1);
         canvas = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
@@ -49,9 +59,20 @@ public class DragnDrop : MonoBehaviour
     public void Update()
     {
         modifiedText = false;
-        MovingBehaviour();
+        if(movablewills) MovingBehaviour();
         Undo();
         Redo();
+        if(a != null && allowSaving && b) Save();
+    }
+    public void Save(){
+        if(l == 3 && Input.GetKeyDown(KeyCode.Mouse2)) {
+            a.SaveWill();
+            allowSaving = false;
+            return;
+        }
+        if(timeForSaving<=0) {a.SaveWill(); allowSaving = false; return;}
+        timeForSaving -= Time.deltaTime;
+        
     }
     public void MovingBehaviour(){
         if (l == 1 && Input.GetKey(KeyCode.Mouse2))
@@ -167,6 +188,8 @@ public class DragnDrop : MonoBehaviour
         field.stringSelectPositionInternal = pos;
     }
     public void OnChanged(string text){
+        allowSaving = true;
+        timeForSaving = 2;
         if(snapshot != null){
             undoStack.Push(snapshot);
             snapshot = null;

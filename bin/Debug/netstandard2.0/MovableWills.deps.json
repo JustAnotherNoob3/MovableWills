@@ -13,7 +13,7 @@
           "NETStandard.Library": "2.0.3",
           "UnityEngine.Modules": "2021.3.1",
           "Assembly-CSharp": "0.0.0.0",
-          "SalemModLoader": "0.0.6.0",
+          "SalemModLoader": "0.6.0.0",
           "Unity.TextMeshPro": "0.0.0.0",
           "UnityEngine.UI": "1.0.0.0"
         },
@@ -379,11 +379,11 @@
           }
         }
       },
-      "SalemModLoader/0.0.6.0": {
+      "SalemModLoader/0.6.0.0": {
         "runtime": {
           "SalemModLoader.dll": {
-            "assemblyVersion": "0.0.6.0",
-            "fileVersion": "0.0.6.0"
+            "assemblyVersion": "0.6.0.0",
+            "fileVersion": "0.6.0.0"
           }
         }
       },
@@ -661,7 +661,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "SalemModLoader/0.0.6.0": {
+    "SalemModLoader/0.6.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

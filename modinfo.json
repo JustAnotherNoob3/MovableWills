@@ -1,39 +1,58 @@
 {
   "HarmonyId": "JAN.movablewills",
-  "DisplayName": "Movable Wills",
+  "DisplayName": "Will Utilities",
   "Authors": [
-    "JAN"
+    "JustAnotherNoob"
   ],
-  "Description": "Drag the top part of your will/notes/death note to move them!.",
-  "Version": "1.1.0",
+  "Description": "Enhancements towards the wills system of the game, adding systems like moving wills, control-z, auto saving, and more!",
+  "Version": "2.0.0",
   "RequiredMods": [],
   "Settings": {
     "CheckboxSettings": [
       {
         "Name": "Auto-save will",
-        "Description": "Will save your will whenever you deselect the text of your will.",
+        "Description": "Will save your will whenever you deselect the text of your will or 2 seconds after you stop typing.",
         "DefaultValue": true,
-        "AvailableInGame": true
+        "AvailableInGame": false
       },
       {
-        "Name": "Use old controls",
-        "Description": "Instead of clicking on the top of the objects to move them, right click in any part of them to do it. If you are having problems moving your things, use this setting.",
-        "DefaultValue": false,
-        "AvailableInGame": true
+        "Name": "Control-Z",
+        "Description": "Allows you to undo/redo text on your will/notepad/etc.",
+        "DefaultValue": true,
+        "AvailableInGame": false
       },
       {
-        "Name": "Use rough estimates",
-        "Description": "If you are having problems with the limits for moving your things, use this setting. This will only work with the \"Use old controls\" setting.",
+        "Name": "Player Notes Standalone",
+        "Description": "Player Notes will be its own object separated from the Notepad.",
+        "DefaultValue": true,
+        "AvailableInGame": false
+      },
+      {
+        "Name": "Show dead player's will fast",
+        "Description": "Will show dead player's will and death note (if any) on the same WDAH as they died in.",
+        "DefaultValue": true,
+        "AvailableInGame": false
+      },
+      {
+        "Name": "Auto-hide dead players",
+        "Description": "\"Hide dead players\" on the Player Notes is turned on by default.",
+        "DefaultValue": true,
+        "AvailableInGame": false
+      },
+      {
+        "Name": "Hide self from Player Notes",
+        "Description": "Will hide your number from the Player Notes.",
         "DefaultValue": false,
-        "AvailableInGame": true
+        "AvailableInGame": false
       }
   ],
   "DropdownSettings": [
     {
       "Name": "Middle-click Functionality",
-      "Description": "Adds a special ability to your middle click\nCentralize: will set every movable object to the default position\nGo here: will instantly teleport all visible movable objects to where your mouse is.",
+      "Description": "Adds a special ability to your middle click\nSave: will save your will\nCentralize: will set every movable object to the default position\nGo here: will instantly teleport all visible movable objects to where your mouse is.",
       "Options": [
         "None",
+        "Save",
         "Centralize",
         "Go here"
       ],

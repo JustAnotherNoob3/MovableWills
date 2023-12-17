@@ -1,0 +1,15 @@
+D:\Apps\JAN's stuff\ToS 2\MovableWills\bin\Debug\netstandard2.0\osx-x64\MovableWills.deps.json
+D:\Apps\JAN's stuff\ToS 2\MovableWills\bin\Debug\netstandard2.0\osx-x64\MovableWills.dll
+D:\Apps\JAN's stuff\ToS 2\MovableWills\bin\Debug\netstandard2.0\osx-x64\MovableWills.pdb
+D:\Apps\JAN's stuff\ToS 2\MovableWills\bin\Debug\netstandard2.0\osx-x64\Assembly-CSharp.dll
+D:\Apps\JAN's stuff\ToS 2\MovableWills\bin\Debug\netstandard2.0\osx-x64\SalemModLoader.dll
+D:\Apps\JAN's stuff\ToS 2\MovableWills\bin\Debug\netstandard2.0\osx-x64\Unity.TextMeshPro.dll
+D:\Apps\JAN's stuff\ToS 2\MovableWills\bin\Debug\netstandard2.0\osx-x64\UnityEngine.UI.dll
+D:\Apps\JAN's stuff\ToS 2\MovableWills\obj\Debug\netstandard2.0\osx-x64\MovableWills.csproj.AssemblyReference.cache
+D:\Apps\JAN's stuff\ToS 2\MovableWills\obj\Debug\netstandard2.0\osx-x64\MovableWills.GeneratedMSBuildEditorConfig.editorconfig
+D:\Apps\JAN's stuff\ToS 2\MovableWills\obj\Debug\netstandard2.0\osx-x64\MovableWills.AssemblyInfoInputs.cache
+D:\Apps\JAN's stuff\ToS 2\MovableWills\obj\Debug\netstandard2.0\osx-x64\MovableWills.AssemblyInfo.cs
+D:\Apps\JAN's stuff\ToS 2\MovableWills\obj\Debug\netstandard2.0\osx-x64\MovableWills.csproj.CoreCompileInputs.cache
+D:\Apps\JAN's stuff\ToS 2\MovableWills\obj\Debug\netstandard2.0\osx-x64\MovableWills.csproj.CopyComplete
+D:\Apps\JAN's stuff\ToS 2\MovableWills\obj\Debug\netstandard2.0\osx-x64\MovableWills.dll
+D:\Apps\JAN's stuff\ToS 2\MovableWills\obj\Debug\netstandard2.0\osx-x64\MovableWills.pdb
